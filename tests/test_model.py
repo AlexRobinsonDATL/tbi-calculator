@@ -1,8 +1,10 @@
+import json
 from datetime import datetime
+from pathlib import Path
 
 import pytest
 
-from tbi_calculator.model import TBIRow
+from tbi_calculator.model import TBIRow, TBITable
 
 
 @pytest.fixture
@@ -28,6 +30,13 @@ def tbi_row():
         currency_code="USD",
         converted_amount=27703.85,
     )
+
+
+@pytest.fixture
+def metabase_reponse():
+    with open(Path(__file__).parent / "tbi_example_data.json", "r") as f:
+        data = json.load(f)
+    return data
 
 
 def test_tbirow_constructor(tbi_row):
@@ -58,3 +67,8 @@ def test_tbirow_is_dunlop(tbi_row, customer, customer_name, expected_result):
     row.customer = customer
     row.customer_name = customer_name
     assert row.is_dunlop() is expected_result
+
+
+def test_tbitable_constructor(metabase_reponse):
+    table = TBITable(metabase_reponse)
+    assert isinstance(table, TBITable)
