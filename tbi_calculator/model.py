@@ -34,7 +34,7 @@ class Smartsheet(smartsheet.Smartsheet):
 class TBIRow:
     customer_order: str
     line_release: str
-    customer: str
+    customer_code: str
     customer_name: str
     item: str
     description: Optional[str]
@@ -61,12 +61,20 @@ class TBIRow:
         else:
             return "Not Specified"
 
-    def is_dunlop(self) -> bool:
-        return (
-            "DUNLOP" in self.customer_name
-            or "D085" in self.customer
-            or "D086" in self.customer
+    def _customer_name_is_dunlop(self) -> bool:
+        if self.customer_name is None:
+            return False
+        return "DUNLOP" in self.customer_name
+
+    def _customer_code_is_dunlop(self) -> bool:
+        if self.customer_code is None:
+            return False
+        return self.customer_code.startswith("D085") or self.customer_code.startswith(
+            "D086"
         )
+
+    def is_dunlop(self) -> bool:
+        return self._customer_code_is_dunlop() or self._customer_name_is_dunlop()
 
 
 class TBITable:
@@ -79,3 +87,10 @@ class TBITable:
     def _parse_response(metabase_reponse) -> List[TBIRow]:
         rows = metabase_reponse[1]["data"]["rows"]
         return [TBIRow(*row) for row in rows]
+
+    def remove_dunlop(self) -> None:
+        self.rows = [row for row in self.rows if not row.is_dunlop()]
+
+    @property
+    def number_of_rows(self) -> int:
+        return len(self.rows)

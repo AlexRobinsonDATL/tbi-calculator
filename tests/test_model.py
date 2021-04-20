@@ -12,7 +12,7 @@ def tbi_row():
     return TBIRow(
         customer_order="N000019522",
         line_release="4/0",
-        customer="B010662",
+        customer_code="B010662",
         customer_name="I AM A CUSTOMER",
         item="DR11111T-2",
         description=None,
@@ -64,7 +64,7 @@ def test_tbirow_order_type(tbi_row, customer_order, expected_result):
 )
 def test_tbirow_is_dunlop(tbi_row, customer, customer_name, expected_result):
     row = tbi_row
-    row.customer = customer
+    row.customer_code = customer
     row.customer_name = customer_name
     assert row.is_dunlop() is expected_result
 
