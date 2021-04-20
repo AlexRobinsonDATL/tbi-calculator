@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytest
 
-from tbi_calculator.data import TBIRow
+from tbi_calculator.model import TBIRow
 
 
 @pytest.fixture
@@ -42,3 +42,19 @@ def test_tbirow_order_type(tbi_row, customer_order, expected_result):
     row = tbi_row
     row.customer_order = customer_order
     assert row.order_type == expected_result
+
+
+@pytest.mark.parametrize(
+    ("customer", "customer_name", "expected_result"),
+    [
+        ("B010662", "DUNLOP ATLAS", True),
+        ("D086000", "CUSTOMER", True),
+        ("D085000", "CUSTOMER", True),
+        ("B010662", "I AM A CUSTOMER", False),
+    ],
+)
+def test_tbirow_is_dunlop(tbi_row, customer, customer_name, expected_result):
+    row = tbi_row
+    row.customer = customer
+    row.customer_name = customer_name
+    assert row.is_dunlop() is expected_result
