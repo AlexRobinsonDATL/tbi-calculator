@@ -176,17 +176,6 @@ python-versions = ">=3.6"
 flake8 = ">=3.0,<3.2.0 || >3.2.0,<4"
 
 [[package]]
-name = "flake8-ownership"
-version = "2.0.1"
-description = "A flake8 checker for assuring that author, copyright, and license are specified in source files."
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-flake8 = ">=3,<4"
-
-[[package]]
 name = "flake8-polyfill"
 version = "1.0.2"
 description = "Polyfill package for Flake8 plugins"
@@ -207,22 +196,6 @@ python-versions = "*"
 
 [package.dependencies]
 flake8 = ">3.0.0"
-
-[[package]]
-name = "flake8-use-fstring"
-version = "1.1"
-description = "Flake8 plugin for string formatting style."
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-flake8 = ">=3.0.0,<4.0.0"
-
-[package.extras]
-ci = ["coverage (>=4.0.0,<5.0.0)", "pytest (>=4)", "pytest-cov (>=2)", "flake8-builtins", "flake8-commas", "flake8-fixme", "flake8-print", "flake8-quotes", "flake8-todo", "python-coveralls"]
-dev = ["coverage (>=4.0.0,<5.0.0)", "pytest (>=4)", "pytest-cov (>=2)", "flake8-builtins", "flake8-commas", "flake8-fixme", "flake8-print", "flake8-quotes", "flake8-todo"]
-test = ["coverage (>=4.0.0,<5.0.0)", "pytest (>=4)", "pytest-cov (>=2)", "flake8-builtins", "flake8-commas", "flake8-fixme", "flake8-print", "flake8-quotes", "flake8-todo"]
 
 [[package]]
 name = "identify"
@@ -562,7 +535,7 @@ brotli = ["brotlipy (>=0.6.0)"]
 
 [[package]]
 name = "virtualenv"
-version = "20.4.3"
+version = "20.4.4"
 description = "Virtual Python Environment builder"
 category = "dev"
 optional = false
@@ -581,7 +554,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.9"
-content-hash = "cb5ac13e371db9ce4ff71651377af6517582d907201544ef8e5a503da319043e"
+content-hash = "f86cd26ee0903d517f5a5b6c045bd6b7cee53e91ebda21d3d100c6750d179008"
 
 [metadata.files]
 appdirs = [
@@ -699,9 +672,6 @@ flake8-comprehensions = [
     {file = "flake8-comprehensions-3.4.0.tar.gz", hash = "sha256:c00039be9f3959a26a98da3024f0fe809859bf1753ccb90e228cc40f3ac31ca7"},
     {file = "flake8_comprehensions-3.4.0-py3-none-any.whl", hash = "sha256:7258a28e229fb9a8d16370b9c47a7d66396ba0201abb06c9d11df41b18ed64c4"},
 ]
-flake8-ownership = [
-    {file = "flake8-ownership-2.0.1.tar.gz", hash = "sha256:287d40027b6f1c888348316a6b5c6d105f6d7321a04c8ad40e7d211e76014b58"},
-]
 flake8-polyfill = [
     {file = "flake8-polyfill-1.0.2.tar.gz", hash = "sha256:e44b087597f6da52ec6393a709e7108b2905317d0c0b744cdca6208e670d8eda"},
     {file = "flake8_polyfill-1.0.2-py2.py3-none-any.whl", hash = "sha256:12be6a34ee3ab795b19ca73505e7b55826d5f6ad7230d31b18e106400169b9e9"},
@@ -709,9 +679,6 @@ flake8-polyfill = [
 flake8-spellcheck = [
     {file = "flake8-spellcheck-0.23.0.tar.gz", hash = "sha256:92b7fb2a36525f4831e215e7f462512bc4351e6c340bc01d91391df530403374"},
     {file = "flake8_spellcheck-0.23.0-py2.py3-none-any.whl", hash = "sha256:574b923ccf9a498d35f1c9e22486b200a1082a7ea8c0ed6908ac267294b5cce0"},
-]
-flake8-use-fstring = [
-    {file = "flake8-use-fstring-1.1.tar.gz", hash = "sha256:a0eea849ffe33fb6903c210c243c0f418da86a530e46cb13e64f1bdb045f22dc"},
 ]
 identify = [
     {file = "identify-2.2.3-py2.py3-none-any.whl", hash = "sha256:398cb92a7599da0b433c65301a1b62b9b1f4bb8248719b84736af6c0b22289d6"},
@@ -953,6 +920,6 @@ urllib3 = [
     {file = "urllib3-1.26.4.tar.gz", hash = "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"},
 ]
 virtualenv = [
-    {file = "virtualenv-20.4.3-py2.py3-none-any.whl", hash = "sha256:83f95875d382c7abafe06bd2a4cdd1b363e1bb77e02f155ebe8ac082a916b37c"},
-    {file = "virtualenv-20.4.3.tar.gz", hash = "sha256:49ec4eb4c224c6f7dd81bb6d0a28a09ecae5894f4e593c89b0db0885f565a107"},
+    {file = "virtualenv-20.4.4-py2.py3-none-any.whl", hash = "sha256:a935126db63128861987a7d5d30e23e8ec045a73840eeccb467c148514e29535"},
+    {file = "virtualenv-20.4.4.tar.gz", hash = "sha256:09c61377ef072f43568207dc8e46ddeac6bcdcaf288d49011bda0e7f4d38c4a2"},
 ]
