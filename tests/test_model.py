@@ -33,10 +33,15 @@ def tbi_row():
 
 
 @pytest.fixture
-def metabase_reponse():
+def metabase_response():
     with open(Path(__file__).parent / "tbi_example_data.json", "r") as f:
         data = json.load(f)
     return data
+
+
+@pytest.fixture
+def tbitable(metabase_response):
+    return TBITable(metabase_response)
 
 
 def test_tbirow_constructor(tbi_row):
@@ -69,6 +74,24 @@ def test_tbirow_is_dunlop(tbi_row, customer, customer_name, expected_result):
     assert row.is_dunlop() is expected_result
 
 
-def test_tbitable_constructor(metabase_reponse):
-    table = TBITable(metabase_reponse)
+def test_tbitable_constructor(metabase_response):
+    table = TBITable(metabase_response)
     assert isinstance(table, TBITable)
+
+
+@pytest.mark.parametrize(
+    ("order_type", "expected_result"),
+    [
+        (None, 909013.61),
+        ("New", 872752.04),
+        ("Retread", 36261.57),
+    ],
+)
+def test_tbitable_total_sales(tbitable, order_type, expected_result):
+    assert tbitable.total_sales(order_type) == pytest.approx(expected_result)
+
+
+def test_tbitable_excludes_customer_codes(tbitable):
+    exclusions = ["U030028", "P030600"]
+    tbitable.exclude(exclusions)
+    assert set(exclusions).issubset(tbitable.customer_codes) is False

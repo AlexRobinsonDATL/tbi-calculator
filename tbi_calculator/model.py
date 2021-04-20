@@ -1,7 +1,7 @@
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 
 import smartsheet
 
@@ -91,6 +91,44 @@ class TBITable:
     def remove_dunlop(self) -> None:
         self.rows = [row for row in self.rows if not row.is_dunlop()]
 
+    def exclude(self, exclusion_list: List[str]) -> None:
+        self.rows = [
+            row for row in self.rows if row.customer_code not in exclusion_list
+        ]
+
+    @property
+    def customer_codes(self) -> Set[str]:
+        return {row.customer_code for row in self.rows}
+
     @property
     def number_of_rows(self) -> int:
+        """Number of rows in the table
+
+        Returns
+        -------
+        int
+            The number of rows
+        """
         return len(self.rows)
+
+    def total_sales(self, order_type: Optional[str] = None) -> float:
+        """The sum of the sales price converted into GBP
+
+        Parameters
+        ----------
+        order_type : Optional[str], optional
+            [description], by default None
+
+        Returns
+        -------
+        float
+            the sum of the converted sales
+        """
+        if order_type is None:
+            order_types = ["New", "Retread", "Not Specified"]
+        else:
+            order_types = [order_type]
+
+        return sum(
+            row.converted_amount for row in self.rows if row.order_type in order_types
+        )
