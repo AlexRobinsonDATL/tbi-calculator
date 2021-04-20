@@ -72,5 +72,10 @@ class TBIRow:
 class TBITable:
     rows: List[TBIRow]
 
-    def __init__(self):
-        raise NotImplementedError
+    def __init__(self, metabase_reponse: Dict):
+        self.rows = self._parse_response(metabase_reponse)
+
+    @staticmethod
+    def _parse_response(metabase_reponse) -> List[TBIRow]:
+        rows = metabase_reponse[1]["data"]["rows"]
+        return [TBIRow(*row) for row in rows]
