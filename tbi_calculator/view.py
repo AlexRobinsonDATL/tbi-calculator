@@ -5,6 +5,8 @@ from .controller.base import ControllerBase
 
 
 class View(metaclass=abc.ABCMeta):
+    status: str
+
     @property
     @abc.abstractmethod
     def password(self) -> str:
@@ -26,11 +28,6 @@ class View(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def start_main_loop(self) -> None:
-        pass
-
-    @property
-    @abc.abstractmethod
-    def status(self) -> str:
         pass
 
 
@@ -93,8 +90,8 @@ class TkView(View):
     def api_key(self) -> str:
         return self._api_key.get()
 
-    @property
-    def status(self) -> str:
+    @property  # type: ignore
+    def status(self) -> str:  # type: ignore
         return self._status.get()
 
     @status.setter
