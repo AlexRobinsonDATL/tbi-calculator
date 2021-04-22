@@ -199,7 +199,7 @@ flake8 = ">3.0.0"
 
 [[package]]
 name = "identify"
-version = "2.2.3"
+version = "2.2.4"
 description = "File identification library for Python"
 category = "dev"
 optional = false
@@ -553,8 +553,8 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 
 [metadata]
 lock-version = "1.1"
-python-versions = "~3.9"
-content-hash = "f86cd26ee0903d517f5a5b6c045bd6b7cee53e91ebda21d3d100c6750d179008"
+python-versions = "^3.8, <3.10"
+content-hash = "68ce194e1b076253a7ccc4abbc12b783fb519ca17890e86b0f3f5ff3783ddc8b"
 
 [metadata.files]
 appdirs = [
@@ -681,8 +681,8 @@ flake8-spellcheck = [
     {file = "flake8_spellcheck-0.23.0-py2.py3-none-any.whl", hash = "sha256:574b923ccf9a498d35f1c9e22486b200a1082a7ea8c0ed6908ac267294b5cce0"},
 ]
 identify = [
-    {file = "identify-2.2.3-py2.py3-none-any.whl", hash = "sha256:398cb92a7599da0b433c65301a1b62b9b1f4bb8248719b84736af6c0b22289d6"},
-    {file = "identify-2.2.3.tar.gz", hash = "sha256:4537474817e0bbb8cea3e5b7504b7de6d44e3f169a90846cbc6adb0fc8294502"},
+    {file = "identify-2.2.4-py2.py3-none-any.whl", hash = "sha256:ad9f3fa0c2316618dc4d840f627d474ab6de106392a4f00221820200f490f5a8"},
+    {file = "identify-2.2.4.tar.gz", hash = "sha256:9bcc312d4e2fa96c7abebcdfb1119563b511b5e3985ac52f60d9116277865b2e"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
