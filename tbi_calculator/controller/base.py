@@ -7,3 +7,7 @@ class ControllerBase(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def start(self) -> None:
         pass
+
+    @abc.abstractmethod
+    def execute(self) -> None:
+        pass
