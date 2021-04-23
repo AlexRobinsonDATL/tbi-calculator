@@ -1,32 +1,9 @@
-import abc
+"""View using tkinter"""
+
 import tkinter as tk
-from typing import Optional
 
-from .controller.base import ControllerBase
-
-
-class View(metaclass=abc.ABCMeta):
-    status: str
-    new_sales: Optional[float]
-    retread_sales: Optional[float]
-
-    @property
-    @abc.abstractmethod
-    def password(self) -> str:
-        pass
-
-    @property
-    @abc.abstractmethod
-    def email(self) -> str:
-        pass
-
-    @abc.abstractmethod
-    def setup(self, controller: ControllerBase) -> None:
-        pass
-
-    @abc.abstractmethod
-    def start_main_loop(self) -> None:
-        pass
+from ..controller.base import ControllerBase
+from .base import View
 
 
 class TkView(View):

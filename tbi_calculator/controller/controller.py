@@ -1,7 +1,7 @@
 from threading import Thread
 
 from ..model.base import Model
-from ..view import View
+from ..view.base import View
 from .base import ControllerBase
 
 
