@@ -7,8 +7,7 @@ from .base import ControllerBase
 
 class Controller(ControllerBase):
     def __init__(self, view: View, model: Model):
-        self.view = view
-        self.model = model
+        super().__init__(view, model)
 
     def start(self) -> None:
         self.view.setup(self)

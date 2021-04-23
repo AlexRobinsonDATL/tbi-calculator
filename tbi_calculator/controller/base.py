@@ -1,8 +1,13 @@
 import abc
 
+from ..model.base import Model
+from ..view.base import View
+
 
 class ControllerBase(metaclass=abc.ABCMeta):
-    password: str
+    def __init__(self, view: View, model: Model):
+        self.view = view
+        self.model = model
 
     @abc.abstractmethod
     def start(self) -> None:
