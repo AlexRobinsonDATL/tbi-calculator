@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from tbi_calculator.model import TBIRow, TBITable
+from tbi_calculator.model.datastructures import TBIRow, TBITable
 
 
 @pytest.fixture
