@@ -16,8 +16,6 @@ class TkView(View):
         self._email = tk.StringVar(self.root)
 
         self.status = "Ready!"
-        self.new_sales = None
-        self.retread_sales = None
 
     def setup(self, controller: ControllerBase):
         self._create_gui(controller)
@@ -45,6 +43,16 @@ class TkView(View):
         self.status_label = tk.Label(self.frame, textvariable=self._status)
         self.status_label.pack(side=tk.TOP)
 
+        self.new_sales_label = tk.Label(self.frame, text="New TBI (£)")
+        self.new_sales_label.place(x=20, y=120)
+        self.new_sales_box = tk.Entry(self.frame, textvariable=self._new_sales)
+        self.new_sales_box.place(x=90, y=120, width=80)
+
+        self.retread_sales_label = tk.Label(self.frame, text="Retread TBI (£)")
+        self.retread_sales_label.place(x=180, y=120)
+        self.retread_sales_box = tk.Entry(self.frame, textvariable=self._retread_sales)
+        self.retread_sales_box.place(x=260, y=120, width=80)
+
         self.go_button = tk.Button(self.frame, text="Go!", command=controller.execute)
         self.go_button.pack(side=tk.BOTTOM)
 
@@ -66,3 +74,21 @@ class TkView(View):
     @status.setter
     def status(self, value: str) -> None:
         self._status.set(value)
+
+    @property  # type: ignore
+    def new_sales(self) -> float:  # type: ignore
+        return self._new_sales.get()
+
+    @new_sales.setter
+    def new_sales(self, value: float) -> None:
+        rounded_value = round(value, 2)
+        self._new_sales.set(rounded_value)
+
+    @property  # type: ignore
+    def retread_sales(self) -> float:  # type: ignore
+        return self._retread_sales.get()
+
+    @retread_sales.setter
+    def retread_sales(self, value: float) -> None:
+        rounded_value = round(value, 2)
+        self._retread_sales.set(rounded_value)
