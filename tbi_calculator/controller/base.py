@@ -1,11 +1,8 @@
 import abc
 
-from ..model.base import Model
-from ..view.base import View
-
 
 class ControllerBase(metaclass=abc.ABCMeta):
-    def __init__(self, view: View, model: Model):
+    def __init__(self, view, model):
         self.view = view
         self.model = model
 
