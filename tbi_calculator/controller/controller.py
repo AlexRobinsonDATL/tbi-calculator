@@ -33,5 +33,7 @@ class Controller(ControllerBase):
         self.model.filter()
 
         self.view.status = "Calculating Totals..."
+        self.view.new_sales = self.model.total_sales("New")
+        self.view.retread_sales = self.model.total_sales("Retread")
 
-        self.view_status = "Ready!"
+        self.view.status = "Ready!"
