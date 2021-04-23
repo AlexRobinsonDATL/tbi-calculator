@@ -1,11 +1,14 @@
 import abc
 import tkinter as tk
+from typing import Optional
 
 from .controller.base import ControllerBase
 
 
 class View(metaclass=abc.ABCMeta):
     status: str
+    new_sales: Optional[float]
+    retread_sales: Optional[float]
 
     @property
     @abc.abstractmethod
@@ -15,11 +18,6 @@ class View(metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
     def email(self) -> str:
-        pass
-
-    @property
-    @abc.abstractmethod
-    def api_key(self) -> str:
         pass
 
     @abc.abstractmethod
@@ -35,11 +33,14 @@ class TkView(View):
     def __init__(self):
         self._setup_tkinter()
         self._status = tk.Variable(self.root)
-        self._api_key = tk.StringVar(self.root)
+        self._new_sales = tk.Variable(self.root)
+        self._retread_sales = tk.Variable(self.root)
         self._password = tk.StringVar(self.root)
         self._email = tk.StringVar(self.root)
 
         self.status = "Ready!"
+        self.new_sales = None
+        self.retread_sales = None
 
     def setup(self, controller: ControllerBase):
         self._create_gui(controller)
@@ -64,11 +65,6 @@ class TkView(View):
         self.password_box = tk.Entry(self.frame, textvariable=self._password, show="*")
         self.password_box.place(x=80, y=80, width=275)
 
-        self.api_key_label = tk.Label(self.frame, text="API Key", anchor="e")
-        self.api_key_label.place(x=20, y=120)
-        self.api_key_box = tk.Entry(self.frame, textvariable=self._api_key)
-        self.api_key_box.place(x=80, y=120, width=275)
-
         self.status_label = tk.Label(self.frame, textvariable=self._status)
         self.status_label.pack(side=tk.TOP)
 
@@ -85,10 +81,6 @@ class TkView(View):
     @property
     def password(self) -> str:
         return self._password.get()
-
-    @property
-    def api_key(self) -> str:
-        return self._api_key.get()
 
     @property  # type: ignore
     def status(self) -> str:  # type: ignore
