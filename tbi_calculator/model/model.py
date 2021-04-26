@@ -3,8 +3,8 @@
 from configparser import ConfigParser
 
 from metabase import Metabase
+from simple_smartsheet import Smartsheet
 
-from ..api import Smartsheet
 from ..config import config
 from .base import Model
 from .datastructures import TBITable
@@ -24,10 +24,18 @@ class SSMetabaseModel(Model):
 
     def _fetch_exclusion_list(self) -> None:
         api_key = self.config["Smartsheet"]["api_key"]
-        sheet_id = self.config["Smartsheet"]["sheet_id"]
+        sheet_name = self.config["Smartsheet"]["sheet_name"]
         column_name = self.config["Smartsheet"]["column_name"]
+
         smartsheet = Smartsheet(api_key)
-        self.exclusion_list = smartsheet.get_column(sheet_id, column_name)
+        sheet = smartsheet.sheets.get(sheet_name)
+        self.exclusion_list = list(
+            {
+                row[column_name]
+                for row in sheet.as_list()
+                if row[column_name] is not None
+            }
+        )
 
     def _fetch_tbi_data(self, metabase_email: str, metabase_password: str) -> None:
         metabase = Metabase(

@@ -6,13 +6,13 @@ from pathlib import Path
 default_config = configparser.ConfigParser()
 default_config["Smartsheet"] = {
     "API_KEY": "",
-    "SHEET_ID": "8604312818476932",
+    "SHEET_NAME": "TBI Exclusions",
     "COLUMN_NAME": "Syteline Account Code",
 }
 default_config["Metabase"] = {"URL": "", "QUERY_NUMBER": "82"}
 
 config = configparser.ConfigParser()
-file_path = Path(__file__).parents[1] / "config.ini"
+file_path = Path("config.ini")
 
 try:
     config.read(file_path)
