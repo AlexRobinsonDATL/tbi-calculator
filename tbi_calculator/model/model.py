@@ -4,6 +4,7 @@ from configparser import ConfigParser
 
 from metabase import Metabase
 from simple_smartsheet import Smartsheet
+from simple_smartsheet.exceptions import SmartsheetError
 
 from ..config import config
 from .base import Model
@@ -27,8 +28,12 @@ class SSMetabaseModel(Model):
         sheet_name = self.config["Smartsheet"]["sheet_name"]
         column_name = self.config["Smartsheet"]["column_name"]
 
-        smartsheet = Smartsheet(api_key)
-        sheet = smartsheet.sheets.get(sheet_name)
+        try:
+            smartsheet = Smartsheet(api_key)
+            sheet = smartsheet.sheets.get(sheet_name)
+        except SmartsheetError:
+            raise ValueError("Could not download smartsheet")
+
         self.exclusion_list = list(
             {
                 row[column_name]

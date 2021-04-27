@@ -21,7 +21,7 @@ class Controller(ControllerBase):
         try:
             self.normal_operation()
         except ValueError:
-            self.view.status = "Ended Prematurely! Please check config.ini, and your email, and password is correct"
+            self.view.status = "Error! Please check config.ini"
 
     def normal_operation(self) -> None:
         self.view.status = "Downloading Data..."
