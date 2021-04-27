@@ -7,7 +7,8 @@ authors = ["AlexRobinsonDATL <alexander.robinson@dunlopatl.co.uk>"]
 [tool.poetry.dependencies]
 python = "^3.8, <3.10"
 metabase = "~1.4"
-smartsheet-python-sdk = "^2.105.1"
+simple-smartsheet = "0.5.0"
+cx-Freeze = "6.6"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.1"
