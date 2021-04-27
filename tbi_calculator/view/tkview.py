@@ -10,7 +10,7 @@ from .base import View
 THEME = "azure"
 assets_path = Path("assets")
 theme_path = assets_path / f"{THEME}.tcl"
-icon_path = assets_path / "approve-invoice.png"
+icon_path = assets_path / "invoice.png"
 
 
 class TkView(View):
