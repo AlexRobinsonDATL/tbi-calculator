@@ -32,7 +32,7 @@ def tbi_row():
     )
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def metabase_response():
     with open(Path(__file__).parent / "tbi_example_data.json", "r") as f:
         data = json.load(f)
