@@ -10,7 +10,9 @@ build_options: Dict[str, List[str]] = {"packages": [], "excludes": []}
 
 base = "Win32GUI" if sys.platform == "win32" else None
 
-executables = [Executable("tbi_calculator/app.py", base=base)]
+executables = [
+    Executable("tbi_calculator/app.py", base=base, icon="assets/invoice.ico")
+]
 
 setup(
     name="TBI Calculator",

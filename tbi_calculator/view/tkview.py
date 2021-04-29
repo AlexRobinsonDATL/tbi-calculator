@@ -1,9 +1,16 @@
 """View using tkinter"""
 
 import tkinter as tk
+from pathlib import Path
+from tkinter import ttk
 
 from ..controller.base import ControllerBase
 from .base import View
+
+THEME = "azure"
+assets_path = Path("assets")
+theme_path = assets_path / f"{THEME}.tcl"
+icon_path = assets_path / "invoice.png"
 
 
 class TkView(View):
@@ -22,38 +29,43 @@ class TkView(View):
 
     def _setup_tkinter(self) -> None:
         self.root = tk.Tk()
+        self.style = ttk.Style(self.root)
+        self.root.tk.call("source", str(theme_path))
+        self.style.theme_use(THEME)
         self.root.geometry("400x200")
-        self.root.title("TBI Calc")
+        self.root.title("TBI Calculator")
+        icon = tk.PhotoImage(file=icon_path)
+        self.root.iconphoto(False, icon)
 
     def _create_gui(self, controller) -> None:
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill=tk.BOTH, expand=1)
 
-        self.email_label = tk.Label(self.frame, text="Email", anchor="e")
+        self.email_label = ttk.Label(self.frame, text="Email", anchor="e")
         self.email_label.place(x=40, y=40)
 
-        self.email_box = tk.Entry(self.frame, textvariable=self._email)
-        self.email_box.place(x=80, y=40, width=275)
+        self.email_box = ttk.Entry(self.frame, textvariable=self._email)
+        self.email_box.place(x=80, y=35, width=275)
 
-        self.password_label = tk.Label(self.frame, text="Password", anchor="e")
+        self.password_label = ttk.Label(self.frame, text="Password", anchor="e")
         self.password_label.place(x=20, y=80)
-        self.password_box = tk.Entry(self.frame, textvariable=self._password, show="*")
-        self.password_box.place(x=80, y=80, width=275)
+        self.password_box = ttk.Entry(self.frame, textvariable=self._password, show="*")
+        self.password_box.place(x=80, y=75, width=275)
 
-        self.status_label = tk.Label(self.frame, textvariable=self._status)
+        self.status_label = ttk.Label(self.frame, textvariable=self._status)
         self.status_label.pack(side=tk.TOP)
 
-        self.new_sales_label = tk.Label(self.frame, text="New TBI (£)")
+        self.new_sales_label = ttk.Label(self.frame, text="New TBI (£)")
         self.new_sales_label.place(x=20, y=120)
-        self.new_sales_box = tk.Entry(self.frame, textvariable=self._new_sales)
-        self.new_sales_box.place(x=90, y=120, width=80)
+        self.new_sales_box = ttk.Entry(self.frame, textvariable=self._new_sales)
+        self.new_sales_box.place(x=90, y=115, width=80)
 
-        self.retread_sales_label = tk.Label(self.frame, text="Retread TBI (£)")
+        self.retread_sales_label = ttk.Label(self.frame, text="Retread TBI (£)")
         self.retread_sales_label.place(x=180, y=120)
-        self.retread_sales_box = tk.Entry(self.frame, textvariable=self._retread_sales)
-        self.retread_sales_box.place(x=260, y=120, width=80)
+        self.retread_sales_box = ttk.Entry(self.frame, textvariable=self._retread_sales)
+        self.retread_sales_box.place(x=260, y=115, width=80)
 
-        self.go_button = tk.Button(self.frame, text="Go!", command=controller.execute)
+        self.go_button = ttk.Button(self.frame, text="Go!", command=controller.execute)
         self.go_button.pack(side=tk.BOTTOM)
 
     def start_main_loop(self) -> None:
